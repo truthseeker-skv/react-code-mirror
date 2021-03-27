@@ -1,6 +1,6 @@
 {
   "name": "@truthseeker-skv/react-code-mirror",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.tsx",
   "module": "index.tsx",
   "files": [
