@@ -1,6 +1,6 @@
 {
   "name": "@truthseeker-skv/react-code-mirror",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "lib/Editor/index.js",
   "files": [
     "./lib/**/*"
