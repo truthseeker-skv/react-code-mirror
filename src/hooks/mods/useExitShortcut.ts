@@ -13,7 +13,7 @@ export function useExitShortcut(params: IUseEscapeKeyDownParams): IEditorModific
     editor.on('keydown', handleOnKeyDown);
   }, []);
 
-  const handleOnKeyDown = (editor: CodeMirror.Editor, e: KeyboardEvent) => {
+  const handleOnKeyDown = (_editor: CodeMirror.Editor, e: KeyboardEvent) => {
     if (e.metaKey && e.key === 'Escape') {
       params.onExit();
     }

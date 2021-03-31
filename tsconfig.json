@@ -1,25 +1,32 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "incremental": true,
-    "module": "CommonJS",
+    "outDir": "lib/Editor",
+    "module": "ESNext",
     "target": "ES5",
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "allowJs": false,
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
     "lib": [
       "ESNext",
       "DOM"
     ],
-    "moduleResolution": "Node",
+    "allowJs": false,
     "jsx": "react",
-    "experimentalDecorators": true,
-    "preserveConstEnums": true,
-    "typeRoots": ["./node_modules/@types", "./types"],
-    "rootDir": "src"
+    "declaration": true,
+    "moduleResolution": "Node",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "rootDir": "src",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ]
   },
   "include": ["./*.ts", "./**/*.ts", "./*.tsx", "./**/*.tsx"],
 }

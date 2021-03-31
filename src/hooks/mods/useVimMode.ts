@@ -1,8 +1,6 @@
 import CodeMirror from 'codemirror';
 import { useCallback } from 'react';
 
-import 'codemirror/keymap/vim';
-
 import { IEditorModification } from '../../models';
 
 export interface IUseVimModeParams {

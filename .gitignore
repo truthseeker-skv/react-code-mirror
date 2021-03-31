@@ -12,6 +12,8 @@ dist
 lib
 anki-models
 
+.npmrc
+
 # Temp cache
 cache
 

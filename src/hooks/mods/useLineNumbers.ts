@@ -31,6 +31,7 @@ function showRelativeLines(editor: CodeMirror.Editor) {
   editor.setOption('lineNumberFormatter', (ln: number) =>
     (ln === lineNum)
       ? lineNum.toString()
-      : Math.abs(lineNum - ln).toString());
+      : Math.abs(lineNum - ln).toString()
+  );
 }
 

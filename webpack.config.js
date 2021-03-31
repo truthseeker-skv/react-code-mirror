@@ -10,9 +10,13 @@ module.exports = {
   output: {
     path: outputPath,
     filename: 'index.js',
+    library: {
+      type: 'commonjs',
+    },
   },
+  externals: ['react', 'react-dom', 'styled-components'],
   mode: 'development',
-  devtool: 'cheap-module-source-map',
+  devtool: 'eval',
   watch: false,
   module: {
     rules: [
@@ -23,10 +27,7 @@ module.exports = {
           {
             loader: 'ts-loader',
             options: {
-              compilerOptions: {
-                declaration: true,
-                declarationDir: outputPath,
-              },
+              compilerOptions: {},
             },
           },
         ],

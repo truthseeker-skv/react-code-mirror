@@ -2,19 +2,17 @@ import CodeMirror from 'codemirror';
 import React, { useCallback, useLayoutEffect, useEffect } from 'react';
 
 import { IEditorProps } from '..';
+import { EditorTheme } from '../models';
 import { useHooksOnMods } from './useHooksOnMods';
-import { useTheme } from './useTheme';
+
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/railscasts.css';
 
 export function useEditor(props: IEditorProps) {
   const ref = React.useRef(null);
   const editor = React.useRef<CodeMirror.Editor | null>(null);
+  const theme: EditorTheme = 'railscasts'; // Hardcoded for now. But may become dynamic in future.
 
-  useTheme({
-    editor: editor.current,
-    theme: props.theme
-  });
-
-  // TODO: name it plugins maybe?
   const modsHooks = useHooksOnMods(props.mods || []);
 
   const handleOnEditorChange = useCallback((editor: CodeMirror.Editor) => {
@@ -26,13 +24,13 @@ export function useEditor(props: IEditorProps) {
       value: props.value,
       mode: 'gfm',
       inputStyle: 'contenteditable',
-      theme: props.theme,
+      theme,
       tabSize: 4,
     });
 
     editor.current.on('change', handleOnEditorChange);
 
-    // TODO: release resources on destruct
+    // TODO: resources should be released on destruct
     modsHooks.onEditorInit(editor.current);
 
     editor.current.refresh();
@@ -40,12 +38,13 @@ export function useEditor(props: IEditorProps) {
   }, []);
 
   useEffect(() => {
-    if (editor.current?.getValue() !== props.value) {
-      editor.current?.setValue(props.value);
+    if (editor.current && (editor.current.getValue() !== props.value)) {
+      editor.current.setValue(props.value);
     }
   }, [props]);
 
   return {
     editorRef: ref,
+    theme,
   };
 }

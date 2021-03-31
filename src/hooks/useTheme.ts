@@ -1,7 +1,14 @@
+/**
+ * --------------------------------------------------
+ * TODO: Not in use now. Left it for future features.
+ * --------------------------------------------------
+ */
+
 import CodeMirror from 'codemirror';
 import { useLayoutEffect } from 'react';
 
 import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/railscasts.css';
 
 import { EditorTheme } from '../models';
 
