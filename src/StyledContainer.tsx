@@ -7,6 +7,7 @@ interface IContainerProps {
   theme: ThemeType;
 }
 
+// TODO: clean up styles
 export const Container = styled.div<IContainerProps>`
   position: relative;
   width: 100%;
@@ -55,8 +56,11 @@ export const Container = styled.div<IContainerProps>`
 
     & .CodeMirror-linenumber {
       padding-right: 6px;
-      background-color: #242424;
     }
+  }
+
+  & .CodeMirror-gutters {
+    background-color: #242424;
   }
 
   .CodeMirror-line::selection,
