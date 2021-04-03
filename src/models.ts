@@ -8,3 +8,5 @@ export interface IEditorModification {
 export type VimMode = 'normal' | 'visual' | 'insert' | 'replace';
 
 export type EditorTheme =  'railscasts' | 'default';
+
+export type EditorModes = 'shell' | 'tsx' | 'gfm';

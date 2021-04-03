@@ -9,7 +9,7 @@ const styles: Partial<ThemeType> = {
     bgColor: '#2d3035',
   },
   activeLineNumber: {
-    bgColor: '#303439',
+    bgColor: '#343638',
     color: '#b0b7c8',
   },
   blinkingCursorAnimation: {

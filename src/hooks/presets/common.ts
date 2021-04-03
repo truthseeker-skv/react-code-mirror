@@ -1,5 +1,5 @@
 import { useExitShortcut } from '../mods/useExitShortcut';
-import { useFakeVimCursor } from '../mods/useFakeVimCursor';
+import { useVimCursor } from '../mods/useVimCursor';
 import { useHighlightCurrentLine } from '../mods/useHighlightCurrentLine';
 import { useLineNumbers } from '../mods/useLineNumbers';
 import { useVimMode } from '../mods/useVimMode';
@@ -21,7 +21,7 @@ export function useCommonModsPreset({
     useVimMode({
       isActive: isVimMode,
     }),
-    useFakeVimCursor({
+    useVimCursor({
       isActive: isVimMode,
     }),
     useLineNumbers({

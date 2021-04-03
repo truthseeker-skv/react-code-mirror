@@ -7,7 +7,7 @@ export interface IUseFakeVimCursorParams {
   isActive?: boolean;
 }
 
-export function useFakeVimCursor(params?: IUseFakeVimCursorParams): IEditorModification {
+export function useVimCursor(params?: IUseFakeVimCursorParams): IEditorModification {
   const vimMode = useRef<VimMode>('normal');
 
   const handleOnEditorInit = useCallback((editor: CodeMirror.Editor) => {

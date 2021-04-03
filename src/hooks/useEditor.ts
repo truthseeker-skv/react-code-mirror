@@ -1,31 +1,40 @@
-import CodeMirror from 'codemirror';
 import React, { useCallback, useLayoutEffect, useEffect } from 'react';
+import CodeMirror from 'codemirror';
 
-import { IEditorProps } from '..';
-import { EditorTheme } from '../models';
+import { EditorTheme, IEditorModification, EditorModes } from '../models';
 import { useHooksOnMods } from './useHooksOnMods';
 
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/railscasts.css';
+export interface IEditorProps {
+  value: string;
+  mods?: Array<IEditorModification>;
+  mode?: EditorModes;
+  className?: string;
+  isReadOnly?: boolean;
+  onChange?: (value: string) => void;
+}
 
 export function useEditor(props: IEditorProps) {
   const ref = React.useRef(null);
   const editor = React.useRef<CodeMirror.Editor | null>(null);
   const theme: EditorTheme = 'railscasts'; // Hardcoded for now. But may become dynamic in future.
+  const mode = getEditorMode(props.mode);
 
   const modsHooks = useHooksOnMods(props.mods || []);
 
   const handleOnEditorChange = useCallback((editor: CodeMirror.Editor) => {
-    props.onChange(editor.getValue());
+    if (props.onChange) {
+      props.onChange(editor.getValue());
+    }
   }, [props.onChange]);
 
   useLayoutEffect(() => {
     editor.current = CodeMirror(ref.current!, {
       value: props.value,
-      mode: 'gfm',
+      mode,
       inputStyle: 'contenteditable',
       theme,
       tabSize: 4,
+      readOnly: props.isReadOnly && 'nocursor',
     });
 
     editor.current.on('change', handleOnEditorChange);
@@ -34,7 +43,6 @@ export function useEditor(props: IEditorProps) {
     modsHooks.onEditorInit(editor.current);
 
     editor.current.refresh();
-    editor.current.focus();
   }, []);
 
   useEffect(() => {
@@ -47,4 +55,15 @@ export function useEditor(props: IEditorProps) {
     editorRef: ref,
     theme,
   };
+}
+
+function getEditorMode(mode?: EditorModes): string {
+  switch (mode) {
+    case 'shell':
+      return 'text/x-sh';
+    case 'tsx':
+      return 'text/typescript-jsx'
+    default:
+      return 'gfm';
+  }
 }

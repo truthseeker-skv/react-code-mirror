@@ -10,6 +10,7 @@
     "allowJs": false,
     "jsx": "react",
     "declaration": true,
+    "emitDeclarationOnly": true,
     "moduleResolution": "Node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -22,6 +23,7 @@
     "noUnusedParameters": true,
     "esModuleInterop": true,
     "incremental": true,
+    "skipLibCheck": true,
     "rootDir": "src",
     "typeRoots": [
       "./node_modules/@types",

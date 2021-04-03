@@ -13,6 +13,51 @@ export const Container = styled.div<IContainerProps>`
   height: 100%;
   border-radius: 4px;
   overflow: hidden;
+  
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  & .CodeMirror-lines {
+    padding: 0;
+
+    & .CodeMirror-line {
+      padding-left: 8px;
+    }
+  }
+  
+  .CodeMirror-code {
+    & .CodeMirror-gutter-wrapper {
+      top: 0;
+    }
+    
+    & > div:first-child {
+      padding-top: 4px;
+
+      & .CodeMirror-linenumber {
+        padding-top: 4px;
+      }
+    }
+
+    & > div:last-child {
+      padding-bottom: 4px;
+
+      & .CodeMirror-linenumber {
+        padding-bottom: 4px;
+      }
+    }
+
+    & .CodeMirror-linenumber {
+      padding-right: 6px;
+      background-color: #242424;
+    }
+  }
 
   .CodeMirror-line::selection,
   .CodeMirror-line > span::selection,
@@ -29,7 +74,7 @@ export const Container = styled.div<IContainerProps>`
     font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
     font-size: 16px;
 
-    & .activeline {
+    &-focused .activeline {
       position: relative;
 
       ${({ theme }) => css`
@@ -43,13 +88,6 @@ export const Container = styled.div<IContainerProps>`
       }
     }
 
-    & .cm-fat-cursor-mark,
-    & .cm-animate-fat-cursor {
-      animation: ${({ theme }) => css`
-        ${blinkingCursorAnimation(theme.blinkingCursorAnimation)} 1.06s steps(1) infinite;
-      `}
-    }
-
     & .fake-caret::before {
       position: absolute;
       content: '';
@@ -57,10 +95,23 @@ export const Container = styled.div<IContainerProps>`
       top: 1px;
       height: calc(100% - 3px);
       width: 4px;
+    }
+
+    & .cm-fat-cursor-mark,
+    & .cm-animate-fat-cursor,
+    & .fake-caret::before {
+      animation: none;
+      background-color: transparent;
+    }
+
+    &-focused .cm-fat-cursor-mark,
+    &-focused .cm-animate-fat-cursor,
+    &-focused .fake-caret::before {
       animation: ${({ theme }) => css`
         ${blinkingCursorAnimation(theme.blinkingCursorAnimation)} 1.06s steps(1) infinite;
-      `}
+      `};
     }
+
 
     & .CodeMirror-dialog-bottom {
       position: relative;

@@ -27,7 +27,9 @@ module.exports = {
           {
             loader: 'ts-loader',
             options: {
-              compilerOptions: {},
+              compilerOptions: {
+                emitDeclarationOnly: false,
+              },
             },
           },
         ],

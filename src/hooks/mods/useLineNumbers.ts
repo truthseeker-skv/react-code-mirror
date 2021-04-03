@@ -12,7 +12,7 @@ export function useLineNumbers(params?: IUseLineNumbersParams): IEditorModificat
   const handleOnEditorInit = useCallback((editor: CodeMirror.Editor) => {
     editor.setOption('lineNumbers', true);
 
-    if (params?.isRelativeLines) {
+    if (params?.isRelativeLines && !editor.isReadOnly()) {
       editor.on('cursorActivity', showRelativeLines);
       showRelativeLines(editor);
     }
